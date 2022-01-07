@@ -14,4 +14,4 @@ devtools::install_github("ShuklaLab/muSignAl")
 
 To update the package just run the `install_github("ShuklaLab/muSignAl")` command again.
 
-A test script (`test.R`) run with a dataset (`AD.xlsx`) and its output (`sign_cvd2.xlsx`) is present in the `example` folder.
+A test script (`test.R`), ran on a dataset (`AD.xlsx`) and its output (`sign_cvd2.xlsx`) is present in the `example` folder.
