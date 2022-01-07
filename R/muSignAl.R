@@ -64,64 +64,62 @@ getPerf <- function(data, feature, outcome, core) {
   new <- data[c(core, outcome)]
   
   #Fold1
-  Train = new[-flds$Fold1,]
-  Test  = new[flds$Fold1,]
-  x_train = data.matrix(Train[,!names(Train) %in% outcome])
-  y_train = as.matrix(Train[,outcome])
-  x_test = data.matrix(Test[,!names(Train) %in% outcome])
-  y_test = as.matrix(Test[,outcome])
+  Train <- new[-flds$Fold1,]
+  Test  <- new[flds$Fold1,]
+  x_train <- data.matrix(Train[,!names(Train) %in% outcome])
+  y_train <- as.matrix(Train[,outcome])
+  x_test <- data.matrix(Test[,!names(Train) %in% outcome])
+  y_test <- as.matrix(Test[,outcome])
   if(nlevels(as.factor(y_test))==1) return(data.frame())
-  cvfit = cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
-  y_train_pred = predict(cvfit, newx = x_train, s = "lambda.min")
-  y_test_pred = predict(cvfit, newx = x_test, s = "lambda.min")
-  roc_train = suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
-  roc_test = suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
-  delong = roc.test(roc_train, roc_test, method = "delong", paired = F)
-  auc_train1 = pROC::auc(roc_train)
-  auc_test1 = pROC::auc(roc_test)
-  th_train = coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
-  y_train_pred_b = as.factor(ifelse(y_train_pred > th_train,1,0))
-  y_test_pred_b = as.factor(ifelse(y_test_pred > th_train,1,0))
-  cm_train = caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
-  cm_test = caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
-  acc_train1 = acc(cm_train)
-  acc_test1 = acc(cm_test)
-  se_train1 = cm_train$byClass['Sensitivity']
-  sp_train1 = cm_train$byClass['Specificity']
-  se_test1 = cm_test$byClass['Sensitivity']
-  sp_test1 = cm_test$byClass['Specificity']
-  mcc_train1 = mcc(cm_train)
-  mcc_test1 = mcc(cm_test)
+  cvfit <- cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
+  y_train_pred <- predict(cvfit, newx = x_train, s = "lambda.min")
+  y_test_pred <- predict(cvfit, newx = x_test, s = "lambda.min")
+  roc_train <- suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
+  roc_test <- suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
+  auc_train1 <- pROC::auc(roc_train)
+  auc_test1 <- pROC::auc(roc_test)
+  th_train <- coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
+  y_train_pred_b <- as.factor(ifelse(y_train_pred > th_train,1,0))
+  y_test_pred_b <- as.factor(ifelse(y_test_pred > th_train,1,0))
+  cm_train <- caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
+  cm_test <- caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
+  acc_train1 <- acc(cm_train)
+  acc_test1 <- acc(cm_test)
+  se_train1 <- cm_train$byClass['Sensitivity']
+  sp_train1 <- cm_train$byClass['Specificity']
+  se_test1 <- cm_test$byClass['Sensitivity']
+  sp_test1 <- cm_test$byClass['Specificity']
+  mcc_train1 <- mcc(cm_train)
+  mcc_test1 <- mcc(cm_test)
   
   #Fold2
-  Train = new[-flds$Fold2,]
-  Test  = new[flds$Fold2,]
-  x_train = data.matrix(Train[,!names(Train) %in% outcome])
-  y_train = as.matrix(Train[,outcome])
-  x_test = data.matrix(Test[,!names(Train) %in% outcome])
-  y_test = as.matrix(Test[,outcome])
+  Train <- new[-flds$Fold2,]
+  Test  <- new[flds$Fold2,]
+  x_train <- data.matrix(Train[,!names(Train) %in% outcome])
+  y_train <- as.matrix(Train[,outcome])
+  x_test <- data.matrix(Test[,!names(Train) %in% outcome])
+  y_test <- as.matrix(Test[,outcome])
   if(nlevels(as.factor(y_test))==1) return(data.frame())
-  cvfit = cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
-  y_train_pred = predict(cvfit, newx = x_train, s = "lambda.min")
-  y_test_pred = predict(cvfit, newx = x_test, s = "lambda.min")
-  roc_train = suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
-  roc_test = suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
-  delong = roc.test(roc_train, roc_test, method = "delong", paired = F)
-  auc_train2 = pROC::auc(roc_train)
-  auc_test2 = pROC::auc(roc_test)
-  th_train = coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
-  y_train_pred_b = as.factor(ifelse(y_train_pred > th_train,1,0))
-  y_test_pred_b = as.factor(ifelse(y_test_pred > th_train,1,0))
-  cm_train = caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
-  cm_test = caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
-  acc_train2 = acc(cm_train)
-  acc_test2 = acc(cm_test)
-  se_train2 = cm_train$byClass['Sensitivity']
-  sp_train2 = cm_train$byClass['Specificity']
-  se_test2 = cm_test$byClass['Sensitivity']
-  sp_test2 = cm_test$byClass['Specificity']
-  mcc_train2 = mcc(cm_train)
-  mcc_test2 = mcc(cm_test)
+  cvfit <- cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
+  y_train_pred <- predict(cvfit, newx = x_train, s = "lambda.min")
+  y_test_pred <- predict(cvfit, newx = x_test, s = "lambda.min")
+  roc_train <- suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
+  roc_test <- suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
+  auc_train2 <- pROC::auc(roc_train)
+  auc_test2 <- pROC::auc(roc_test)
+  th_train <- coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
+  y_train_pred_b <- as.factor(ifelse(y_train_pred > th_train,1,0))
+  y_test_pred_b <- as.factor(ifelse(y_test_pred > th_train,1,0))
+  cm_train <- caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
+  cm_test <- caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
+  acc_train2 <- acc(cm_train)
+  acc_test2 <- acc(cm_test)
+  se_train2 <- cm_train$byClass['Sensitivity']
+  sp_train2 <- cm_train$byClass['Specificity']
+  se_test2 <- cm_test$byClass['Sensitivity']
+  sp_test2 <- cm_test$byClass['Specificity']
+  mcc_train2 <- mcc(cm_train)
+  mcc_test2 <- mcc(cm_test)
   
   #Fold3
   Train = new[-flds$Fold3,]
@@ -136,7 +134,6 @@ getPerf <- function(data, feature, outcome, core) {
   y_test_pred = predict(cvfit, newx = x_test, s = "lambda.min")
   roc_train = suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
   roc_test = suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
-  delong = roc.test(roc_train, roc_test, method = "delong", paired = F)
   auc_train3 = pROC::auc(roc_train)
   auc_test3 = pROC::auc(roc_test)
   th_train = coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
@@ -166,7 +163,6 @@ getPerf <- function(data, feature, outcome, core) {
   y_test_pred = predict(cvfit, newx = x_test, s = "lambda.min")
   roc_train = suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
   roc_test = suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
-  delong = roc.test(roc_train, roc_test, method = "delong", paired = F)
   auc_train4 = pROC::auc(roc_train)
   auc_test4 = pROC::auc(roc_test)
   th_train = coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
@@ -196,7 +192,6 @@ getPerf <- function(data, feature, outcome, core) {
   y_test_pred = predict(cvfit, newx = x_test, s = "lambda.min")
   roc_train = suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
   roc_test = suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
-  delong = roc.test(roc_train, roc_test, method = "delong", paired = F)
   auc_train5 = pROC::auc(roc_train)
   auc_test5 = pROC::auc(roc_test)
   th_train = coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
