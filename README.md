@@ -1,4 +1,4 @@
-# muSignAl: <u>Mu<\u>ltiple Signature Algorithm.
+# muSignAl: <ins>Mu</ins>ltiple Signature Algorithm.
 An R package for detecting multiple signatures with similar predictive performance.
 
 **Visit us at:** [https://github.com/ShuklaLab/muSignAl](https://github.com/ShuklaLab/muSignAl)
