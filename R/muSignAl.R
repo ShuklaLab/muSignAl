@@ -122,91 +122,91 @@ getPerf <- function(data, feature, outcome, core) {
   mcc_test2 <- mcc(cm_test)
   
   #Fold3
-  Train = new[-flds$Fold3,]
-  Test  = new[flds$Fold3,]
-  x_train = data.matrix(Train[,!names(Train) %in% outcome])
-  y_train = as.matrix(Train[,outcome])
-  x_test = data.matrix(Test[,!names(Train) %in% outcome])
-  y_test = as.matrix(Test[,outcome])
+  Train <- new[-flds$Fold3,]
+  Test  <- new[flds$Fold3,]
+  x_train <- data.matrix(Train[,!names(Train) %in% outcome])
+  y_train <- as.matrix(Train[,outcome])
+  x_test <- data.matrix(Test[,!names(Train) %in% outcome])
+  y_test <- as.matrix(Test[,outcome])
   if(nlevels(as.factor(y_test))==1) return(data.frame())
-  cvfit = cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
-  y_train_pred = predict(cvfit, newx = x_train, s = "lambda.min")
-  y_test_pred = predict(cvfit, newx = x_test, s = "lambda.min")
-  roc_train = suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
-  roc_test = suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
-  auc_train3 = pROC::auc(roc_train)
-  auc_test3 = pROC::auc(roc_test)
-  th_train = coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
-  y_train_pred_b = as.factor(ifelse(y_train_pred > th_train,1,0))
-  y_test_pred_b = as.factor(ifelse(y_test_pred > th_train,1,0))
-  cm_train = caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
-  cm_test = caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
-  acc_train3 = acc(cm_train)
-  acc_test3 = acc(cm_test)
-  se_train3 = cm_train$byClass['Sensitivity']
-  sp_train3 = cm_train$byClass['Specificity']
-  se_test3 = cm_test$byClass['Sensitivity']
-  sp_test3 = cm_test$byClass['Specificity']
-  mcc_train3 = mcc(cm_train)
-  mcc_test3 = mcc(cm_test)
+  cvfit <- cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
+  y_train_pred <- predict(cvfit, newx = x_train, s = "lambda.min")
+  y_test_pred <- predict(cvfit, newx = x_test, s = "lambda.min")
+  roc_train <- suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
+  roc_test <- suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
+  auc_train3 <- pROC::auc(roc_train)
+  auc_test3 <- pROC::auc(roc_test)
+  th_train <- coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
+  y_train_pred_b <- as.factor(ifelse(y_train_pred > th_train,1,0))
+  y_test_pred_b <- as.factor(ifelse(y_test_pred > th_train,1,0))
+  cm_train <- caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
+  cm_test <- caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
+  acc_train3 <- acc(cm_train)
+  acc_test3 <- acc(cm_test)
+  se_train3 <- cm_train$byClass['Sensitivity']
+  sp_train3 <- cm_train$byClass['Specificity']
+  se_test3 <- cm_test$byClass['Sensitivity']
+  sp_test3 <- cm_test$byClass['Specificity']
+  mcc_train3 <- mcc(cm_train)
+  mcc_test3 <- mcc(cm_test)
   
   #Fold4
-  Train = new[-flds$Fold4,]
-  Test  = new[flds$Fold4,]
-  x_train = data.matrix(Train[,!names(Train) %in% outcome])
-  y_train = as.matrix(Train[,outcome])
-  x_test = data.matrix(Test[,!names(Train) %in% outcome])
-  y_test = as.matrix(Test[,outcome])
+  Train <- new[-flds$Fold4,]
+  Test  <- new[flds$Fold4,]
+  x_train <- data.matrix(Train[,!names(Train) %in% outcome])
+  y_train <- as.matrix(Train[,outcome])
+  x_test <- data.matrix(Test[,!names(Train) %in% outcome])
+  y_test <- as.matrix(Test[,outcome])
   if(nlevels(as.factor(y_test))==1) return(data.frame())
-  cvfit = cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
-  y_train_pred = predict(cvfit, newx = x_train, s = "lambda.min")
-  y_test_pred = predict(cvfit, newx = x_test, s = "lambda.min")
-  roc_train = suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
-  roc_test = suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
-  auc_train4 = pROC::auc(roc_train)
-  auc_test4 = pROC::auc(roc_test)
-  th_train = coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
-  y_train_pred_b = as.factor(ifelse(y_train_pred > th_train,1,0))
-  y_test_pred_b = as.factor(ifelse(y_test_pred > th_train,1,0))
-  cm_train = caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
-  cm_test = caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
-  acc_train4 = acc(cm_train)
-  acc_test4 = acc(cm_test)
-  se_train4 = cm_train$byClass['Sensitivity']
-  sp_train4 = cm_train$byClass['Specificity']
-  se_test4 = cm_test$byClass['Sensitivity']
-  sp_test4 = cm_test$byClass['Specificity']
-  mcc_train4 = mcc(cm_train)
-  mcc_test4 = mcc(cm_test)
+  cvfit <- cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
+  y_train_pred <- predict(cvfit, newx = x_train, s = "lambda.min")
+  y_test_pred <- predict(cvfit, newx = x_test, s = "lambda.min")
+  roc_train <- suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
+  roc_test <- suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
+  auc_train4 <- pROC::auc(roc_train)
+  auc_test4 <- pROC::auc(roc_test)
+  th_train <- coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
+  y_train_pred_b <- as.factor(ifelse(y_train_pred > th_train,1,0))
+  y_test_pred_b <- as.factor(ifelse(y_test_pred > th_train,1,0))
+  cm_train <- caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
+  cm_test <- caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
+  acc_train4 <- acc(cm_train)
+  acc_test4 <- acc(cm_test)
+  se_train4 <- cm_train$byClass['Sensitivity']
+  sp_train4 <- cm_train$byClass['Specificity']
+  se_test4 <- cm_test$byClass['Sensitivity']
+  sp_test4 <- cm_test$byClass['Specificity']
+  mcc_train4 <- mcc(cm_train)
+  mcc_test4 <- mcc(cm_test)
   
   #Fold5
-  Train = new[-flds$Fold5,]
-  Test  = new[flds$Fold5,]
-  x_train = data.matrix(Train[,!names(Train) %in% outcome])
-  y_train = as.matrix(Train[,outcome])
-  x_test = data.matrix(Test[,!names(Train) %in% outcome])
-  y_test = as.matrix(Test[,outcome])
+  Train <- new[-flds$Fold5,]
+  Test  <- new[flds$Fold5,]
+  x_train <- data.matrix(Train[,!names(Train) %in% outcome])
+  y_train <- as.matrix(Train[,outcome])
+  x_test <- data.matrix(Test[,!names(Train) %in% outcome])
+  y_test <- as.matrix(Test[,outcome])
   if(nlevels(as.factor(y_test))==1) return(data.frame())
-  cvfit = cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
-  y_train_pred = predict(cvfit, newx = x_train, s = "lambda.min")
-  y_test_pred = predict(cvfit, newx = x_test, s = "lambda.min")
-  roc_train = suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
-  roc_test = suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
-  auc_train5 = pROC::auc(roc_train)
-  auc_test5 = pROC::auc(roc_test)
-  th_train = coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
-  y_train_pred_b = as.factor(ifelse(y_train_pred > th_train,1,0))
-  y_test_pred_b = as.factor(ifelse(y_test_pred > th_train,1,0))
-  cm_train = caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
-  cm_test = caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
-  acc_train5 = acc(cm_train)
-  acc_test5 = acc(cm_test)
-  se_train5 = cm_train$byClass['Sensitivity']
-  sp_train5 = cm_train$byClass['Specificity']
-  se_test5 = cm_test$byClass['Sensitivity']
-  sp_test5 = cm_test$byClass['Specificity']
-  mcc_train5 = mcc(cm_train)
-  mcc_test5 = mcc(cm_test)
+  cvfit <- cv.glmnet(x_train, y_train, type.measure = "class", alpha=0.9, nfolds = 10, family="binomial")
+  y_train_pred <- predict(cvfit, newx = x_train, s = "lambda.min")
+  y_test_pred <- predict(cvfit, newx = x_test, s = "lambda.min")
+  roc_train <- suppressMessages(roc(as.numeric(y_train),as.numeric(y_train_pred)))
+  roc_test <- suppressMessages(roc(as.numeric(y_test),as.numeric(y_test_pred)))
+  auc_train5 <- pROC::auc(roc_train)
+  auc_test5 <- pROC::auc(roc_test)
+  th_train <- coords(roc_train, "b", ret = "t", best.method = "youden", transpose = T)
+  y_train_pred_b <- as.factor(ifelse(y_train_pred > th_train,1,0))
+  y_test_pred_b <- as.factor(ifelse(y_test_pred > th_train,1,0))
+  cm_train <- caret::confusionMatrix(data = y_train_pred_b, reference = as.factor(y_train))
+  cm_test <- caret::confusionMatrix(data = y_test_pred_b, reference = as.factor(y_test))
+  acc_train5 <- acc(cm_train)
+  acc_test5 <- acc(cm_test)
+  se_train5 <- cm_train$byClass['Sensitivity']
+  sp_train5 <- cm_train$byClass['Specificity']
+  se_test5 <- cm_test$byClass['Sensitivity']
+  sp_test5 <- cm_test$byClass['Specificity']
+  mcc_train5 <- mcc(cm_train)
+  mcc_test5 <- mcc(cm_test)
   
   auc_train <- (auc_train1+auc_train2+auc_train3+auc_train4+auc_train5)/5
   auc_test <- (auc_test1+auc_test2+auc_test3+auc_test4+auc_test5)/5
