@@ -8,11 +8,10 @@ An R package for detecting multiple signatures with similar predictive performan
 
 ## Requirements
 
-muSignAl requires a couple of R packages to be pre-installed, which can be installed as below:
+muSignAl was coded in R v3.6, and require a couple of packages (`glmnet` and `pROC`) to be pre-installed, which can be installed as below:
 
 ```
-install.packages("glmnet")
-install.packages("pROC")
+install.packages(c("glmnet","pROC"))
 ```
 
 ## Installation
