@@ -3,6 +3,15 @@ An R package for detecting multiple signatures with similar predictive performan
 
 **Visit us at:** [https://github.com/ShuklaLab/muSignAl](https://github.com/ShuklaLab/muSignAl)
 
+## Requirements
+
+muSignAl requires a couple of R packages, which can be installed as below:
+
+```
+install.packages("glmnet")
+install.packages("pROC")
+```
+
 ## Installation
 
 To install the latest version of muSignAl, please follow the steps:
