@@ -5,7 +5,7 @@ An R package for detecting multiple signatures with similar predictive performan
 
 ## Requirements
 
-muSignAl requires a couple of R packages, which can be installed as below:
+muSignAl requires a couple of R packages to be pre-installed, which can be installed as below:
 
 ```
 install.packages("glmnet")
