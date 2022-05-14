@@ -3,6 +3,8 @@ An R package for detecting multiple signatures with similar predictive performan
 
 **Visit us at:** [Shukla Lab](https://shuklalab.github.io/)
 
+![GitHub](https://img.shields.io/github/license/ShuklaLab/muSignAl)
+
 ## Requirements
 
 muSignAl requires a couple of R packages to be pre-installed, which can be installed as below:
