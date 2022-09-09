@@ -1,5 +1,8 @@
 # muSignAl: <ins>mu</ins>ltiple <ins>Sign</ins>ature <ins>Al</ins>gorithm
+
 An R package for detecting multiple signatures with similar predictive performance.
+
+*Code author/maintainer: [@bodhayan](https://github.com/bodhayan)*
 
 **Visit us at:** [Shukla Lab](https://shuklalab.github.io/)
 
@@ -29,8 +32,14 @@ To update the package just run the same command again.
 
 A test script (`test.R`), ran on a sample dataset (`AD.xlsx`) and its final output (`sign_cvd2.xlsx`) are present in the `example` folder.
 
-## Contributing
+## Contributing and licensing
+[MIT](https://choosealicense.com/licenses/mit/) License is free license software and grants the software end user rights such as copying, modifying, merging, distributing, etc.
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+## Publication
+If you're using our tool and/or dataset, please cite:
+
+[Prasad B, Bjourson AJ, Shukla P. muSignAl: An algorithm to search for multiple omic signatures with similar predictive performance. Proteomics. 2022 Sep 8:e2200252. doi: 10.1002/pmic.202200252. Epub ahead of print. PMID: 36076312.](https://doi.org/10.1002/pmic.202200252)
+***
+*Last updated on: 9 Sep 2022*
