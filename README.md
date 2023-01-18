@@ -40,6 +40,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## Publication
 If you're using our tool and/or dataset, please cite:
 
-[Prasad B, Bjourson AJ, Shukla P. muSignAl: An algorithm to search for multiple omic signatures with similar predictive performance. Proteomics. 2022 Sep 8:e2200252. doi: 10.1002/pmic.202200252. Epub ahead of print. PMID: 36076312.](https://doi.org/10.1002/pmic.202200252)
+[Prasad B, Bjourson AJ, Shukla P. muSignAl: An algorithm to search for multiple omic signatures with similar predictive performance. Proteomics. 2023 Jan;23(2):e2200252. doi: 10.1002/pmic.202200252. Epub 2022 Oct 3. PMID: 36076312.](https://doi.org/10.1002/pmic.202200252)
 ***
-*Last updated on: 9 Sep 2022*
+*Last updated on: 18 Jan 2023*
