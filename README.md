@@ -38,7 +38,7 @@ A test script (`test.R`), ran on a sample dataset (`AD.xlsx`) and its final outp
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Publication
-If you're using our tool and/or dataset, please cite:
+If you're using muSignAl, please cite:
 
 [Prasad B, Bjourson AJ, Shukla P. muSignAl: An algorithm to search for multiple omic signatures with similar predictive performance. Proteomics. 2023 Jan;23(2):e2200252. doi: 10.1002/pmic.202200252. Epub 2022 Oct 3. PMID: 36076312.](https://doi.org/10.1002/pmic.202200252)
 ***
